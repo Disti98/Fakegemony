@@ -1,0 +1,137 @@
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.main_page {
+  display: flex;
+  flex-direction: column;
+}
+
+.main_navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 20px;
+  position: sticky;
+  top: 0%;
+  background: white;
+  flex-grow: 1;
+}
+
+.filter {
+  margin: 0%;
+}
+
+.filter-input {
+  margin: 0;
+}
+
+.friends {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  background: #fb8351;
+  padding: 20px;
+}
+
+.friends img {
+  width: 35px;
+  padding: 0;
+  background: white;
+  border-radius: 100%;
+}
+
+.friendCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+  width: 150px;
+  padding: 20px 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+  font-weight: bold;
+  background: white;
+}
+
+.friendCard p {
+  font-size: 12pt;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: lightseagreen;
+}
+
+.add-new-message {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px;
+  background: #ffad64;
+  position: sticky;
+  top: 46px;
+}
+
+.messageCard {
+  display: flex;
+  flex-direction: column;
+  border: 2px dotted;
+  padding: 0 20px;
+  background: #add4d3;
+}
+
+.messageCard:hover {
+  transform: scale(1.05);
+}
+
+.messages-list {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.empty {
+  width: 100%;
+  background: lightyellow;
+}
+
+@media only screen and (min-width: 767px) {
+  .main_page {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .friends {
+    width: 25%;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .messages {
+    width: 33%;
+    flex-grow: 1;
+  }
+
+  .empty {
+    width: 25%;
+  }
+}
