@@ -4,14 +4,12 @@
 // # Avanzato
 // Aggiungere la funzionalita di rimozione per ogni card, che una volta cliccata cancella la card in questione.
 
-import { q, c, createFriendEl, createMessageEl } from "./utils.js";
+import { q, createFriendEl, createMessageEl } from "./utils.js";
 import { GET, POST, DELETE } from "./api.js";
 
 const messageBodyPost = {};
 
 const friendsEl = q(".friends");
-const messagesEl = q(".messages");
-const addNewMessageEl = q(".add-new-message");
 
 const inputTextEl = q(".input-text");
 const inputSender = q(".input-sender");
@@ -20,7 +18,6 @@ const addMsgBtn = q(".add-new-message-btn");
 const filterInput = q(".filter-input");
 
 const messagesListEl = q(".messages-list");
-const emptyEl = q(".empty");
 
 // friends
 GET("https://edgemony-backend.herokuapp.com/friends").then((friendList) => {
@@ -31,11 +28,13 @@ GET("https://edgemony-backend.herokuapp.com/friends").then((friendList) => {
 
 // messages
 GET("https://edgemony-backend.herokuapp.com/messages").then((messagesList) => {
-  messagesList
-    .reverse()
-    .map(({ text, sender, date, id }) =>
-      createMessageEl(messagesListEl, text, sender, date, id)
-    );
+  messagesList.reverse().map(({ text, sender, date, id }) =>
+    createMessageEl(messagesListEl, id, text, sender, date, () => {
+      DELETE("https://edgemony-backend.herokuapp.com/messages", id).then(() =>
+        location.reload()
+      );
+    })
+  );
 });
 
 inputTextEl.addEventListener(
@@ -59,11 +58,14 @@ addMsgBtn.addEventListener("click", () => {
     .then(() =>
       GET("https://edgemony-backend.herokuapp.com/messages").then(
         (messagesList) => {
-          messagesList
-            .reverse()
-            .map(({ text, sender, date, id }) =>
-              createMessageEl(messagesListEl, text, sender, date, id)
-            );
+          messagesList.reverse().map(({ text, sender, date, id }) =>
+            createMessageEl(messagesListEl, id, text, sender, date, () => {
+              DELETE(
+                "https://edgemony-backend.herokuapp.com/messages",
+                id
+              ).then(() => location.reload());
+            })
+          );
         }
       )
     );
@@ -85,7 +87,11 @@ filterInput.addEventListener("input", (e) => {
           message.sender.toLowerCase().includes(e.target.value.toLowerCase())
         )
         .map(({ text, sender, date, id }) =>
-          createMessageEl(messagesListEl, text, sender, date, id)
+          createMessageEl(messagesListEl, id, text, sender, date, () => {
+            DELETE("https://edgemony-backend.herokuapp.com/messages", id).then(
+              () => location.reload()
+            );
+          })
         );
     }
   );

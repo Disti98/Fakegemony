@@ -28,6 +28,18 @@ body {
   top: 0%;
   background: white;
   flex-grow: 1;
+  z-index: 1;
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
+.logo_name {
+  margin: 0%;
 }
 
 .filter {
@@ -87,6 +99,7 @@ body {
   background: #ffad64;
   position: sticky;
   top: 46px;
+  z-index: 1;
 }
 
 .messageCard {

@@ -4,27 +4,6 @@ const c = (el) => document.createElement(el);
 
 const q = (el) => document.querySelector(el);
 
-const createCard = (parent, imgLink, title, price) => {
-  const wrapperEl = c("div");
-  const titleEl = c("h3");
-  const priceEl = c("p");
-  const imgEl = c("img");
-
-  wrapperEl.className = "wrapper";
-  titleEl.className = "title";
-  priceEl.className = "price";
-  imgEl.className = "img";
-
-  imgEl.setAttribute("alt", title);
-  imgEl.setAttribute("src", imgLink);
-
-  titleEl.textContent = title;
-  priceEl.textContent = price;
-
-  wrapperEl.append(imgEl, titleEl, priceEl);
-  parent.appendChild(wrapperEl);
-};
-
 const createFriendEl = (parent, name, photo) => {
   const wrapper = c("div");
   const img = c("img");
@@ -39,7 +18,14 @@ const createFriendEl = (parent, name, photo) => {
   parent.appendChild(wrapper);
 };
 
-const createMessageEl = (parent, text, sender, date, id) => {
+const createMessageEl = (
+  parent,
+  id,
+  text,
+  sender,
+  date,
+  callback = () => {}
+) => {
   const wrapper = c("div");
   const textPar = c("p");
   const senderPar = c("p");
@@ -51,14 +37,10 @@ const createMessageEl = (parent, text, sender, date, id) => {
   senderPar.textContent = sender;
   dataPar.textContent = date;
 
-  wrapper.addEventListener("click", () => {
-    DELETE("https://edgemony-backend.herokuapp.com/messages/", id).then(() =>
-      wrapper.remove(id)
-    );
-  });
+  wrapper.addEventListener("click", callback);
 
   wrapper.append(textPar, senderPar, dataPar);
   parent.appendChild(wrapper);
 };
 
-export { c, q, createCard, createFriendEl, createMessageEl };
+export { c, q, createFriendEl, createMessageEl };
