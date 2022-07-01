@@ -1,5 +1,3 @@
-import { DELETE } from "./api.js";
-
 const c = (el) => document.createElement(el);
 
 const q = (el) => document.querySelector(el);
