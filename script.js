@@ -53,7 +53,11 @@ inputTextEl.addEventListener(
 
 inputSender.addEventListener("input", (e) => {
   messageBodyPost.sender = e.target.value;
-  messageBodyPost.date = new Date().toTimeString();
+  const today = new Date();
+
+  messageBodyPost.date = `${today.getFullYear()}/${
+    today.getMonth() + 1
+  }/${today.getDate()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
 });
 
 //post message
