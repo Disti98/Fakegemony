@@ -7,7 +7,7 @@ const createFriendEl = (parent, name, photo) => {
   const img = c("img");
   const par = c("p");
 
-  wrapper.className = "friendCard";
+  wrapper.className = "friend_card";
   img.setAttribute("alt", name);
   img.setAttribute("src", photo);
   par.textContent = name;

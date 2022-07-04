@@ -31,6 +31,13 @@ body {
   z-index: 1;
 }
 
+a {
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+
 .logo {
   display: flex;
   flex-direction: row;
@@ -50,8 +57,42 @@ body {
   margin: 0;
 }
 
+.friends_ham_bar {
+  width: 100%;
+  background: #fb8351;
+}
+
+.friends_ham {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.bar1,
+.bar2,
+.bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: rgb(0, 0, 0);
+  margin: 6px 0;
+  transition: 0.4s ease-in-out;
+}
+
+.change .bar1 {
+  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+  transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.change .bar2 {
+  opacity: 0;
+}
+
+.change .bar3 {
+  -webkit-transform: rotate(45deg) translate(-8px, -8px);
+  transform: rotate(45deg) translate(-8px, -8px);
+}
+
 .friends {
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
@@ -61,6 +102,11 @@ body {
   padding: 20px;
 }
 
+.friends.active {
+  display: flex;
+  left: 0;
+}
+
 .friends img {
   width: 35px;
   padding: 0;
@@ -68,7 +114,7 @@ body {
   border-radius: 100%;
 }
 
-.friendCard {
+.friend_card {
   display: flex;
   align-items: center;
   justify-content: space-around;

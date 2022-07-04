@@ -19,12 +19,21 @@ const filterInput = q(".filter-input");
 
 const messagesListEl = q(".messages-list");
 
-// friends
-GET("https://edgemony-backend.herokuapp.com/friends").then((friendList) => {
-  friendList.map((friend) =>
-    createFriendEl(friendsEl, friend.name, friend.photo)
-  );
+const friendsMenuIcon = q(".friends_ham");
+
+friendsMenuIcon.addEventListener("click", () => {
+  friendsMenuIcon.classList.toggle("change");
+  friendsEl.classList.toggle("active");
 });
+
+// friends
+GET("https://edgemony-backend.herokuapp.com/friends")
+  .then((friendList) => {
+    friendList.map((friend) =>
+      createFriendEl(friendsEl, friend.name, friend.photo)
+    );
+  })
+  .then();
 
 // messages
 GET("https://edgemony-backend.herokuapp.com/messages").then((messagesList) => {
